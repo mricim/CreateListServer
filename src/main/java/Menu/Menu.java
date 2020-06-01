@@ -47,18 +47,21 @@ public class Menu {
                 MenuJar.menuAdd(stage1, borderPane);
             }
         });
-        Button addFiles = new Button("Update Files");
-        addFiles.setOnAction(new EventHandler<ActionEvent>() {
+        HBoxCustom hBox1 = new HBoxCustom(addInstaller, addJar);
+        hBox1.setSpacing(10);
+        vBox.getChildren().add(hBox1);
+        //
+        Button updateFiles = new Button("Update Files");
+        updateFiles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
                 XMLCaller.generatorFiles(stage1, borderPane);
             }
         });
+        HBoxCustom hBox2 = new HBoxCustom(updateFiles);
+        hBox2.setSpacing(10);
+        vBox.getChildren().add(hBox2);
         //
-        HBoxCustom hBox1 = new HBoxCustom(addInstaller, addJar, addFiles);
-        hBox1.setSpacing(10);
-        vBox.getChildren().add(hBox1);
-
         Button removeInstaller = new Button("Remove Installer");
         removeInstaller.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -73,9 +76,9 @@ public class Menu {
                 MenuJar.menuRemove(stage1, borderPane);
             }
         });
-        HBoxCustom hBox2 = new HBoxCustom(removeInstaller, removeJar);
-        hBox2.setSpacing(10);
-        vBox.getChildren().add(hBox2);
+        HBoxCustom hBox3 = new HBoxCustom(removeInstaller, removeJar);
+        hBox3.setSpacing(10);
+        vBox.getChildren().add(hBox3);
         //
         borderPane.setCenter(vBox);
     }

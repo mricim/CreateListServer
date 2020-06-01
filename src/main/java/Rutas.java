@@ -40,8 +40,10 @@ public class Rutas {
     }
 
     public String getName() {
-        if (name!=null){
-        return name;}return "0";
+        if (name != null) {
+            return name;
+        }
+        return "0";
     }
 
     public String getPath() {
@@ -51,12 +53,15 @@ public class Rutas {
     public String getPathNope() {
         if (path != null) {
             return path.replaceAll("\\\\", "/");
-        }return "null";
+        }
+        return "null";
     }
 
     public String getMd5() {
-        if (md5!=null){
-        return md5;}return "0";
+        if (md5 != null) {
+            return md5;
+        }
+        return "0";
     }
 
     public String getFileSearch() {

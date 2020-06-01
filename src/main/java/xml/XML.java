@@ -98,7 +98,7 @@ public class XML {
                 } catch (NullPointerException e) {
                 }
                 try {
-                    isfile = eElement.getElementsByTagName("isfile").item(0).getTextContent();
+                    isfile = eElement.getElementsByTagName("nameFile").item(0).getTextContent();
                 } catch (NullPointerException e) {
                 }
 //                System.out.println(system);
@@ -170,12 +170,12 @@ public class XML {
             String md5 = ruta.getMd5();
             if (md5 != null) {
                 Element attr = document.createElement("md5");
-                attr.appendChild(document.createTextNode(md5));
+                attr.appendChild(document.createTextNode(md5.toLowerCase()));
                 element.appendChild(attr);
             }
             String isfile = ruta.getFileSearch();
             if (isfile != null) {
-                Element attr = document.createElement("isfile");
+                Element attr = document.createElement("nameFile");
                 attr.appendChild(document.createTextNode(isfile));
                 element.appendChild(attr);
             }
