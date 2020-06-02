@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ReadFiles {
 
-    public static List<CustomDirOrFile> walk(String path) {
+    public static List<CustomDirOrFile> walk(String path) throws Exception {
         List<CustomDirOrFile> lista = new ArrayList<>();
         File root = new File(path);
         File[] list = root.listFiles();

@@ -19,7 +19,7 @@ public class Rutas {
         this.href = href;
         this.name = name;
         this.path = path;
-        this.md5 = md5;
+        this.md5 = md5.toLowerCase();
         this.fileSearch = fileSearch;
     }
 

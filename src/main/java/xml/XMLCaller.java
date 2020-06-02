@@ -3,6 +3,7 @@ package main.java.xml;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import main.java.CheckSumMD5;
 import main.java.CustomTags.CustomAlert;
 import main.java.Hash;
 import main.java.Menu.Menu;
@@ -25,7 +26,7 @@ import static main.java.Main.*;
 import static main.java.xml.XML.writeXML;
 
 public class XMLCaller {
-    public static void generatorInstaller(Stage stage1, BorderPane borderPane, String so, String version, String exe, String zip) {
+    public static void generatorInstaller(Stage stage1, BorderPane borderPane, String so, String version, String exe, String zip) throws Exception {
         try {
             ArrayList<Rutas> rutas = new ArrayList<>();
             ArrayList<Rutas> rutasOld = new ArrayList<>();
@@ -52,6 +53,7 @@ public class XMLCaller {
             String name = exe.substring(exe.lastIndexOf("\\") + 1);
             version += "." + num;
             String versionpath = version.replaceAll("\\.", "/") + "/" + name;
+            //rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", CheckSumMD5.getMD5Checksum(new File(exe)), null));
             rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", toHex(Hash.MD5.checksum((new File(exe)))), null));
             rutas.addAll(rutasOld);
 
@@ -95,7 +97,7 @@ public class XMLCaller {
         Menu.menu(stage1, borderPane);
     }
 
-    public static void generatorJar(Stage stage1, BorderPane borderPane, String version, String jar) {
+    public static void generatorJar(Stage stage1, BorderPane borderPane, String version, String jar) throws Exception {
         try {
             ArrayList<Rutas> rutas = new ArrayList<>();
             ArrayList<Rutas> rutasOld = new ArrayList<>();
@@ -119,6 +121,7 @@ public class XMLCaller {
             }
             version += "." + num;
             String versionpath = version.replaceAll("\\.", "/") + "/" + name;
+            //rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", CheckSumMD5.getMD5Checksum(new File(jar)), null));
             rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", toHex(Hash.MD5.checksum((new File(jar)))), null));
             rutas.addAll(rutasOld);
 
@@ -156,7 +159,7 @@ public class XMLCaller {
         Menu.menu(stage1, borderPane);
     }
 
-    public static void generatorFiles(Stage stage1, BorderPane borderPane) {
+    public static void generatorFiles(Stage stage1, BorderPane borderPane) throws Exception {
         String ruteXX = RUTE + FILES;
         List<CustomDirOrFile> a = ReadFiles.walk(ruteXX + "res");
 

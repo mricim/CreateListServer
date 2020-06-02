@@ -170,7 +170,7 @@ public class XML {
             String md5 = ruta.getMd5();
             if (md5 != null) {
                 Element attr = document.createElement("md5");
-                attr.appendChild(document.createTextNode(md5.toLowerCase()));
+                attr.appendChild(document.createTextNode(md5));
                 element.appendChild(attr);
             }
             String isfile = ruta.getFileSearch();

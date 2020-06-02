@@ -1,8 +1,11 @@
 package main.java.SelectPath;
 
-import javax.xml.bind.DatatypeConverter;
+import main.java.CheckSumMD5;
 import main.java.Hash;
+
+import javax.xml.bind.DatatypeConverter;
 import java.io.File;
+
 
 public class CustomDirOrFile {
 
@@ -12,10 +15,11 @@ public class CustomDirOrFile {
     String hash = null;
     boolean dirTRUEfileFALSE;
 
-    public CustomDirOrFile(String path, String name, boolean dirTRUEfileFALSE) {
+    public CustomDirOrFile(String path, String name, boolean dirTRUEfileFALSE) throws Exception {
         this.path = path;
         this.name = name;
         if (!dirTRUEfileFALSE) {
+            //this.hash = CheckSumMD5.getMD5Checksum(new File(path));
             this.hash = toHex(Hash.MD5.checksum((new File(path))));
         }
         this.dirTRUEfileFALSE = dirTRUEfileFALSE;

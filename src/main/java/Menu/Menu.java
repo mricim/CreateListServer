@@ -55,7 +55,11 @@ public class Menu {
         updateFiles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
-                XMLCaller.generatorFiles(stage1, borderPane);
+                try {
+                    XMLCaller.generatorFiles(stage1, borderPane);
+                } catch (Exception exception) {
+                    exception.printStackTrace();
+                }
             }
         });
         HBoxCustom hBox2 = new HBoxCustom(updateFiles);

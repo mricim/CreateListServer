@@ -164,7 +164,11 @@ public class MenuInstaller {
             }
         });
         btnDone.setOnAction(e -> {
-            XMLCaller.generatorInstaller(stage1, borderPane, so, version.getText(), textAreaExe.getText(), textAreaZip.getText());
+            try {
+                XMLCaller.generatorInstaller(stage1, borderPane, so, version.getText(), textAreaExe.getText(), textAreaZip.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         });
         //
         //

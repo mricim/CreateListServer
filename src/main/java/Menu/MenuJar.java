@@ -75,7 +75,11 @@ public class MenuJar {
             }
         });
         btnDone.setOnAction(e -> {
-            XMLCaller.generatorJar(stage1, borderPane, version.getText(), textAreaExe.getText());
+            try {
+                XMLCaller.generatorJar(stage1, borderPane, version.getText(), textAreaExe.getText());
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         });
         //
         //
