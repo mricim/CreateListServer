@@ -110,8 +110,8 @@ public class MenuInstaller {
                 format2 = "zip";
                 break;
             case "Linux":
-                format1 = "npi";
-                format2 = "tar.gz";
+                format1 = "tar.gz";
+                format2 = "zip";
                 break;
             case "Mac":
                 format1 = "mac";
