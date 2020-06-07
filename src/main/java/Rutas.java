@@ -3,14 +3,14 @@ package main.java;
 import java.util.Objects;
 
 public class Rutas {
-    private String system;
-    private String fileORlist;
-    private String version;
-    private String href;
-    private String name;
-    private String path;
-    private String md5;
-    private String fileSearch;
+    private final String system;
+    private final String fileORlist;
+    private final String version;
+    private final String href;
+    private final String name;
+    private final String path;
+    private final String md5;
+    private final String fileSearch;
 
     public Rutas(String system, String fileORlist, String version, String href, String name, String path, String md5, String fileSearch) {
         this.system = system;

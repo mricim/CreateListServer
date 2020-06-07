@@ -119,53 +119,54 @@ public class MenuInstaller {
                 break;
         }
 
-        Label exe = new Label(format1 + ":");
-        TextField textAreaExe = new TextField();
-        textAreaExe.setPrefWidth(200);
-        textAreaExe.setEditable(false);
-        Button btnExe = new Button("Select " + format1);
-        btnExe.setDisable(true);
-        String finalFormat1 = format1;
+        Label label1 = new Label(format1 + ":");
+        TextField textArea1 = new TextField();
+        textArea1.setPrefWidth(200);
+        textArea1.setEditable(false);
+        Button btn1 = new Button("Select " + format1);
+        btn1.setDisable(true);
 
-        HBoxCustom hBox2 = new HBoxCustom(exe, textAreaExe, btnExe);
+        HBoxCustom hBox2 = new HBoxCustom(label1, textArea1, btn1);
         vBox.getChildren().add(hBox2);
 
-        Label zip = new Label(format2 + ":");
-        TextField textAreaZip = new TextField();
-        textAreaZip.setPrefWidth(200);
-        textAreaZip.setEditable(false);
-        Button btnZip = new Button("Select " + format2);
-        btnZip.setDisable(true);
-        String finalFormat2 = format2;
-        HBoxCustom hBox3 = new HBoxCustom(zip, textAreaZip, btnZip);
+        Label label2 = new Label(format2 + ":");
+        TextField textArea2 = new TextField();
+        textArea2.setPrefWidth(200);
+        textArea2.setEditable(false);
+        Button btn2 = new Button("Select " + format2);
+        btn2.setDisable(true);
+        HBoxCustom hBox3 = new HBoxCustom(label2, textArea2, btn2);
         vBox.getChildren().add(hBox3);
+
+        String finalFormat1 = format1;
+        String finalFormat2 = format2;
 
         check.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                //checkVersion(stage1, version.getText(), btnExe, btnZip);
-                checkUpload(stage1, btnDone, version.getText(), btnExe, textAreaExe.getText(), btnZip, textAreaZip.getText());
+                //checkVersion(stage1, version.getText(), btn1, btn2);
+                checkUpload(stage1, btnDone, version.getText(), btn1, textArea1.getText(), btn2, textArea2.getText());
             }
         });
-        btnExe.setOnAction(new EventHandler<ActionEvent>() {
+        btn1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                SelectPath.selectFile(stage1, textAreaExe, finalFormat1);
-                textAreaExe.setPrefWidth(textAreaExe.getText().length() * 7);
-                checkUpload(stage1, btnDone, version.getText(), btnExe, textAreaExe.getText(), btnZip, textAreaZip.getText());
+                SelectPath.selectFile(stage1, textArea1, finalFormat1);
+                textArea1.setPrefWidth(textArea1.getText().length() * 7);
+                checkUpload(stage1, btnDone, version.getText(), btn1, textArea1.getText(), btn2, textArea2.getText());
             }
         });
-        btnZip.setOnAction(new EventHandler<ActionEvent>() {
+        btn2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                SelectPath.selectFile(stage1, textAreaZip, finalFormat2);
-                textAreaZip.setPrefWidth(textAreaZip.getText().length() * 7);
-                checkUpload(stage1, btnDone, version.getText(), btnExe, textAreaExe.getText(), btnZip, textAreaZip.getText());
+                SelectPath.selectFile(stage1, textArea2, finalFormat2);
+                textArea2.setPrefWidth(textArea2.getText().length() * 7);
+                checkUpload(stage1, btnDone, version.getText(), btn1, textArea1.getText(), btn2, textArea2.getText());
             }
         });
         btnDone.setOnAction(e -> {
             try {
-                XMLCaller.generatorInstaller(stage1, borderPane, so, version.getText(), textAreaExe.getText(), textAreaZip.getText());
+                XMLCaller.generatorInstaller(stage1, borderPane, so, version.getText(), finalFormat1, textArea1.getText(), finalFormat2, textArea2.getText());
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -177,12 +178,8 @@ public class MenuInstaller {
         borderPane.setCenter(vBox);
     }
 
-    private static void checkUpload(Stage stage1, Button done, String version, Button btnExe, String exe, Button btnZip, String zip) {
-        if (checkVersion(stage1, version, btnExe, btnZip) && exe.length() > 4 && zip.length() > 4) {
-            done.setDisable(false);
-        } else {
-            done.setDisable(true);
-        }
+    private static void checkUpload(Stage stage1, Button done, String version, Button btn1, String path1, Button btn2, String path2) {
+        done.setDisable(!checkVersion(stage1, version, btn1, btn2) || path1.length() <= 4 || path2.length() <= 4);
     }
 
 
@@ -223,7 +220,7 @@ public class MenuInstaller {
                     CustomAlert alert = new CustomAlert(stage1, Alert.AlertType.INFORMATION);
                     alert.setTitle("Eliminado correctamente");
                     alert.setHeaderText("Borrado");
-                    alert.setContentText(seleccionado+" deletec");
+                    alert.setContentText(seleccionado + " deletec");
                     alert.showAndWait();
                     Menu.menu(stage1, borderPane);
                 }

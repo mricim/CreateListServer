@@ -26,7 +26,7 @@ import static main.java.Menu.Menu.getButtonCancel;
 import static main.java.xml.XML.writeXML;
 
 public class MenuJar {
-    public static void menuAdd(Stage stage1, BorderPane borderPane) {
+    public static void menuJar(Stage stage1, BorderPane borderPane) {
         stage1.setTitle("Add Jar");
         VBoxCustom vBox = new VBoxCustom();
         vBox.setSpacing(30);

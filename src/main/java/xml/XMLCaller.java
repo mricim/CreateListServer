@@ -26,7 +26,7 @@ import static main.java.Main.*;
 import static main.java.xml.XML.writeXML;
 
 public class XMLCaller {
-    public static void generatorInstaller(Stage stage1, BorderPane borderPane, String so, String version, String exe, String zip) throws Exception {
+    public static void generatorInstaller(Stage stage1, BorderPane borderPane, String so, String version, String format1, String path1, String format2, String path2) throws Exception {
         try {
             ArrayList<Rutas> rutas = new ArrayList<>();
             ArrayList<Rutas> rutasOld = new ArrayList<>();
@@ -41,7 +41,6 @@ public class XMLCaller {
                 NodeList nodeList = XML.getList(XML.getDocument(lalista.getAbsolutePath()));
                 rutasOld.addAll(XML.extractorXML(nodeList));
             }
-            //System.out.println(exe);
             //System.out.println(name);
             int num = 0;
             for (Rutas ruta : rutasOld) {
@@ -50,11 +49,11 @@ public class XMLCaller {
                     break;
                 }
             }
-            String name = exe.substring(exe.lastIndexOf("\\") + 1);
+            String name = path1.substring(path1.lastIndexOf("\\") + 1);
             version += "." + num;
             String versionpath = version.replaceAll("\\.", "/") + "/" + name;
-            //rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", CheckSumMD5.getMD5Checksum(new File(exe)), null));
-            rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", toHex(Hash.MD5.checksum((new File(exe)))), null));
+
+            rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", toHex(Hash.MD5.checksum((new File(path1)))), null));
             rutas.addAll(rutasOld);
 
             writeXML(lalista.getAbsolutePath(), "file", rutas);
@@ -68,14 +67,12 @@ public class XMLCaller {
                     throw new FileNotFoundException("carpeta no creada: " + dir.getAbsolutePath());
                 }
             }
-            if (!new File(exe).renameTo(new File(newFilePath))) {
-                throw new FileNotFoundException("exe not move: " + newFilePath);
+            if (!new File(path1).renameTo(new File(newFilePath))) {
+                throw new FileNotFoundException(format1+" not move: " + newFilePath);
             }
-            //System.out.println(zip);
-            //System.out.println(newFilePath.substring(0, newFilePath.lastIndexOf(".")) + ".zip");
-            String pathZip = newFilePath.substring(0, newFilePath.lastIndexOf(".")) + ".zip";
-            if (!new File(zip).renameTo(new File(pathZip))) {
-                throw new FileNotFoundException("zip not move" + pathZip);
+            String path2final = newFilePath.replace(format1,format2);
+            if (!new File(path2).renameTo(new File(path2final))) {
+                throw new FileNotFoundException(format2+" not move" + path2final);
 
             }
             //
@@ -122,7 +119,7 @@ public class XMLCaller {
             version += "." + num;
             String versionpath = version.replaceAll("\\.", "/") + "/" + name;
             //rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", CheckSumMD5.getMD5Checksum(new File(jar)), null));
-            rutas.add(new Rutas(null, "file", version, versionpath, name, "tmp", toHex(Hash.MD5.checksum((new File(jar)))), null));
+            rutas.add(new Rutas(null, "file", version, versionpath, name, "bin", toHex(Hash.MD5.checksum((new File(jar)))), null));
             rutas.addAll(rutasOld);
 
             writeXML(lalista.getAbsolutePath(), "file", rutas);

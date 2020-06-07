@@ -44,7 +44,7 @@ public class Menu {
         addJar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
-                MenuJar.menuAdd(stage1, borderPane);
+                MenuJar.menuJar(stage1, borderPane);
             }
         });
         HBoxCustom hBox1 = new HBoxCustom(addInstaller, addJar);
