@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class Dates {
     public static boolean isValidFormat(String format, String value, Locale locale) {
-        LocalDateTime ldt = null;
+        LocalDateTime ldt;
         DateTimeFormatter fomatter = DateTimeFormatter.ofPattern(format, locale);
 
         try {

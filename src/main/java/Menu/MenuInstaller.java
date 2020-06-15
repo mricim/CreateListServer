@@ -27,7 +27,11 @@ import static main.java.xml.XML.writeXML;
 public class MenuInstaller {
 
     static void menuInstaller(Stage stage1, BorderPane borderPane, boolean addTRUEremoveFALSE) {
-        stage1.setTitle("Installer");
+        if (addTRUEremoveFALSE){
+            stage1.setTitle("ADD Installer");
+        }else {
+            stage1.setTitle("REMOVE Installer");
+        }
         VBoxCustom vBox = new VBoxCustom();
         //
         //
@@ -81,7 +85,7 @@ public class MenuInstaller {
 
 
     private static void addInstaller(Stage stage1, BorderPane borderPane, String so) {
-        stage1.setTitle("Installer->" + so);
+        stage1.setTitle("ADD Installer->" + so);
         VBoxCustom vBox = new VBoxCustom();
         vBox.setSpacing(30);
         //
@@ -114,7 +118,7 @@ public class MenuInstaller {
                 format2 = "zip";
                 break;
             case "Mac":
-                format1 = "mac";
+                format1 = "rar";
                 format2 = "zip";
                 break;
         }
@@ -185,7 +189,7 @@ public class MenuInstaller {
 
     public static void removeInstaller(Stage stage1, BorderPane borderPane, String os) {
         try {
-            stage1.setTitle("Installer->" + os + " Remove");
+            stage1.setTitle("REMOVE Installer->" + os + " Remove");
             VBoxCustom vBox = new VBoxCustom();
             vBox.setSpacing(30);
             //

@@ -56,7 +56,7 @@ public class XML {
             Node node2 = nodeList.item(i);
             if (node2.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) node2;
-                String seeker = null;
+                //String seeker = null;
                 String system = null;
                 String type = null;
                 String version = null;
@@ -65,10 +65,10 @@ public class XML {
                 String path = null;
                 String md5 = null;
                 String isfile = null;
-                try {
-                    seeker = eElement.getElementsByTagName("seeker").item(0).getTextContent();
-                } catch (NullPointerException e) {
-                }
+                //try {
+                //    seeker = eElement.getElementsByTagName("seeker").item(0).getTextContent();
+                //} catch (NullPointerException e) {
+                //}
                 try {
                     system = eElement.getElementsByTagName("system").item(0).getTextContent();
                 } catch (NullPointerException e) {
