@@ -24,20 +24,20 @@ import static main.java.SelectPath.SelectPath.openFile;
 public class Main extends Application {
 
     public static String RUTE;
-    public static final String INSTALLER="application\\installers\\";
-    public static final String CORE="application\\update\\core\\";
-    public static final String FILES="application\\update\\files\\";
-    public static final String LISTA="\\list.xml";
+    public static final String INSTALLER = "application\\installers\\";
+    public static final String CORE = "application\\update\\core\\";
+    public static final String FILES = "application\\update\\files\\";
+    public static final String LISTA = "\\list.xml";
 
 
     public static Desktop desktop = Desktop.getDesktop();
     BorderPane borderPane = new BorderPane();
 
     public static void main(String[] args) {
-        if (Main.class.getResource("Main.class").toString().contains("jar:")){
-            RUTE=System.getProperty("user.dir")+"\\";
-        }else{
-            RUTE=System.getProperty("user.dir")+"\\src\\downloads\\";
+        if (Main.class.getResource("Main.class").toString().contains("jar:")) {
+            RUTE = System.getProperty("user.dir") + "\\";
+        } else {
+            RUTE = System.getProperty("user.dir") + "\\src\\downloads\\";
         }
 
         launch(args);
@@ -52,12 +52,11 @@ public class Main extends Application {
         stage1.setScene(scene);
 
         stage1.show();
-
-        gestorDeMenus(stage1,borderPane);
+        gestorDeMenus(stage1, borderPane);
 
     }
 
-    private void gestorDeMenus(Stage stage1,BorderPane borderPane) {
-        Menu.menu(stage1,borderPane);
+    private void gestorDeMenus(Stage stage1, BorderPane borderPane) {
+        Menu.menu(stage1, borderPane, false);
     }
 }

@@ -49,11 +49,11 @@ public class MenuJar {
         vBox.getChildren().add(hBox1);
 
 
-        Label exe = new Label( "Add Jar:");
+        Label exe = new Label("Add Jar:");
         TextField textAreaExe = new TextField();
         textAreaExe.setPrefWidth(200);
         textAreaExe.setEditable(false);
-        Button btnExe = new Button("Select .jar" );
+        Button btnExe = new Button("Select .jar");
         btnExe.setDisable(true);
 
         HBoxCustom hBox2 = new HBoxCustom(exe, textAreaExe, btnExe);
@@ -125,9 +125,9 @@ public class MenuJar {
                     CustomAlert alert = new CustomAlert(stage1, Alert.AlertType.INFORMATION);
                     alert.setTitle("Eliminado correctamente");
                     alert.setHeaderText("Borrado");
-                    alert.setContentText(seleccionado+" deletec");
+                    alert.setContentText(seleccionado + " deletec");
                     alert.showAndWait();
-                    Menu.menu(stage1, borderPane);
+                    Menu.menu(stage1, borderPane, true);
                 }
             });
             HBoxCustom hBox3 = new HBoxCustom(comboBox, btn);

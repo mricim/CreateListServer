@@ -91,7 +91,7 @@ public class XMLCaller {
             alert.showAndWait();
         }
         //
-        Menu.menu(stage1, borderPane);
+        Menu.menu(stage1, borderPane,true);
     }
 
     public static void generatorJar(Stage stage1, BorderPane borderPane, String version, String jar) throws Exception {
@@ -153,7 +153,7 @@ public class XMLCaller {
             alert.showAndWait();
         }
         //
-        Menu.menu(stage1, borderPane);
+        Menu.menu(stage1, borderPane,true);
     }
 
     public static void generatorFiles(Stage stage1, BorderPane borderPane) throws Exception {

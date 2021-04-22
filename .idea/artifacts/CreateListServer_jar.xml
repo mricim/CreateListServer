@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="CreateListServer:jar">
-    <output-path>$PROJECT_DIR$/../../Desktop/armegis.tk/downloads/</output-path>
+    <output-path>$PROJECT_DIR$/../../../PROYECTOS/armegis/downloads</output-path>
     <root id="archive" name="CreateListServer.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" />

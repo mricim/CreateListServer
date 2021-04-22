@@ -27,9 +27,9 @@ import static main.java.xml.XML.writeXML;
 public class MenuInstaller {
 
     static void menuInstaller(Stage stage1, BorderPane borderPane, boolean addTRUEremoveFALSE) {
-        if (addTRUEremoveFALSE){
+        if (addTRUEremoveFALSE) {
             stage1.setTitle("ADD Installer");
-        }else {
+        } else {
             stage1.setTitle("REMOVE Installer");
         }
         VBoxCustom vBox = new VBoxCustom();
@@ -226,7 +226,7 @@ public class MenuInstaller {
                     alert.setHeaderText("Borrado");
                     alert.setContentText(seleccionado + " deletec");
                     alert.showAndWait();
-                    Menu.menu(stage1, borderPane);
+                    Menu.menu(stage1, borderPane, true);
                 }
             });
             HBoxCustom hBox3 = new HBoxCustom(comboBox, btn);

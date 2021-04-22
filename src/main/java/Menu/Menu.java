@@ -5,15 +5,20 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 import main.java.CustomTags.CustomAlert;
 import main.java.CustomTags.HBoxCustom;
 import main.java.Dates;
+import main.java.Main;
 import main.java.xml.XMLCaller;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -27,13 +32,34 @@ public class Menu {
         return sdfDate.format(now);
     }
 
-    public static void menu(Stage stage1, BorderPane borderPane) {
+    public static void menu(Stage stage1, BorderPane borderPane, boolean ruteIsSelected) {
+
+
         stage1.setTitle("Home");
         VBox vBox = new VBox();
         vBox.setAlignment(Pos.CENTER);
         vBox.setSpacing(10);
         //
+        DirectoryChooser directoryChooser = new DirectoryChooser();
+        directoryChooser.setInitialDirectory(new File("../"));
+        Label label = new Label("..\\downloads\\");
+        TextField selectRuteTextField;
+        if (ruteIsSelected) {
+            selectRuteTextField = new TextField(Main.RUTE);
+        } else {
+            selectRuteTextField = new TextField("downloads");
+        }
+
+
+        Button selectRuteButton = new Button("Select Folder");
+
+        HBoxCustom hBox0 = new HBoxCustom(label, selectRuteTextField, selectRuteButton);
+        hBox0.setSpacing(10);
+        vBox.getChildren().add(hBox0);
+
+        //
         Button addInstaller = new Button("Add Installer");
+        addInstaller.setDisable(true);
         addInstaller.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
@@ -41,6 +67,7 @@ public class Menu {
             }
         });
         Button addJar = new Button("Add Jar");
+        addJar.setDisable(true);
         addJar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
@@ -52,6 +79,7 @@ public class Menu {
         vBox.getChildren().add(hBox1);
         //
         Button updateFiles = new Button("Update Files");
+        updateFiles.setDisable(true);
         updateFiles.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
@@ -67,6 +95,7 @@ public class Menu {
         vBox.getChildren().add(hBox2);
         //
         Button removeInstaller = new Button("Remove Installer");
+        removeInstaller.setDisable(true);
         removeInstaller.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
@@ -74,6 +103,7 @@ public class Menu {
             }
         });
         Button removeJar = new Button("Remove Jar");
+        removeJar.setDisable(true);
         removeJar.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
@@ -85,6 +115,32 @@ public class Menu {
         vBox.getChildren().add(hBox3);
         //
         borderPane.setCenter(vBox);
+
+        if (ruteIsSelected) {
+            addInstaller.setDisable(false);
+            addJar.setDisable(false);
+            updateFiles.setDisable(false);
+            removeInstaller.setDisable(false);
+            removeJar.setDisable(false);
+        }
+        selectRuteButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent e) {
+                File selectedDirectory = directoryChooser.showDialog(stage1);
+                String rute = selectedDirectory.getAbsolutePath() + "\\";
+                if (rute.contains("\\downloads\\")) {
+                    selectRuteTextField.setText(rute);
+                    //
+                    addInstaller.setDisable(false);
+                    addJar.setDisable(false);
+                    updateFiles.setDisable(false);
+                    removeInstaller.setDisable(false);
+                    removeJar.setDisable(false);
+                    //
+                    Main.RUTE = rute;
+                }
+            }
+        });
     }
 
     static Button getButtonCancel(Stage stage1, BorderPane borderPane) {
@@ -92,7 +148,7 @@ public class Menu {
         btnToMenu.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent e) {
-                menu(stage1, borderPane);
+                menu(stage1, borderPane, true);
             }
         });
         return btnToMenu;
